@@ -25,18 +25,18 @@ insert into STUDENT.OFFICE ( 轄管分局代碼, 分局地址, 分局聯絡電話, 轄管分局) val
 insert into STUDENT.OFFICE ( 轄管分局代碼, 分局地址, 分局聯絡電話, 轄管分局) values ('M003', '苗栗縣頭份市中興路503號', '03 766 3004', '頭份分局');
 commit;
 
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣竹南鎮中埔街20號', '100', '1',  'MOO1', 'C001');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣竹南鎮和平街79號', '3142', '1',  'MOO1', 'C002');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣竹南鎮龍山路三段142號', '1072', '1',  'MOO1', 'C003');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公共設施', '苗栗縣後龍鎮中華路1498號', '32', '1',  'MOO1', 'C004');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣苗栗市米市街80號', '106', '1',  'MOO2', 'C005');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣苗栗市光復路117號', '26', '1',  'MOO2', 'C005');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣苗栗市博愛街109號', '2038', '2',  'MOO2', 'C005');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣苗栗市大同路53號', '128', '2',  'MOO2', 'C005');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公共設施', '苗栗縣頭份市民族里和平路102號', '353', '1',  'MOO3', 'C006');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('私營單位', '苗栗縣頭份市忠孝忠孝一路69號', '501', '1',  'MOO3', 'C007');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣頭份市信義里中正路65號', '194', '1',  'MOO3', 'C008');
-insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('私營單位', '苗栗縣頭份市信義里中正路116號', '78', '1',  'MOO3', 'C008');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣竹南鎮中埔街20號', '100', '1',  'M001', 'C001');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣竹南鎮和平街79號', '3142', '1',  'M001', 'C002');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣竹南鎮龍山路三段142號', '1072', '1',  'M001', 'C003');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公共設施', '苗栗縣後龍鎮中華路1498號', '32', '1',  'M001', 'C004');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣苗栗市米市街80號', '106', '1',  'M002', 'C005');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣苗栗市光復路117號', '26', '1',  'M002', 'C005');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣苗栗市博愛街109號', '2038', '2',  'M002', 'C005');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('大樓', '苗栗縣苗栗市大同路53號', '128', '2',  'M002', 'C005');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公共設施', '苗栗縣頭份市民族里和平路102號', '353', '1',  'M003', 'C006');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('私營單位', '苗栗縣頭份市忠孝忠孝一路69號', '501', '1',  'M003', 'C007');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('公寓', '苗栗縣頭份市信義里中正路65號', '194', '1',  'M003', 'C008');
+insert into STUDENT.OFFICE_INFO ( 類別, 避難設施地址, 容人數量, 地下樓層數, 轄管分局代碼, 村里別代號) values ('私營單位', '苗栗縣頭份市信義里中正路116號', '78', '1',  'M003', 'C008');
 commit;
 
 insert into STUDENT.COUNTRY_INFO ( 村里別代號, 村里別, 村里辦公室位置, 村里辦公室電話) values ('C001', '大埔里', '竹南鎮公義路1035號', '03 758 1072');
