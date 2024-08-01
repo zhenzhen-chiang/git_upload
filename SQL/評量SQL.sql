@@ -65,7 +65,7 @@ group by 轄管分局, 分局聯絡電話;
 select po.轄管分局, po.分局聯絡電話, off.避難設施地址, off.類別, COUNT(*) as 容人數量
 from STUDENT.OFFICE po 
 full join STUDENT.OFFICE_INFO off on off."轄管分局代碼" = po."轄管分局代碼" 
-where off.容人數量>'1000' 
+where off.容人數量>1000 
 group by 轄管分局, 分局聯絡電話, 避難設施地址, 類別; 
 
 --4.4
