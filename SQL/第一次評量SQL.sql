@@ -76,39 +76,39 @@ alter table STUDENT.EVACUATION_FACILITY add RUNNING_NUMBER NUMBER(13,0);
 commit;
 update STUDENT.EVACUATION_FACILITY set RUNNING_NUMBER = 13 where PEOPLE = 3142;
 --4.1
-select distinct off.OFFICE_NM as 轄管分局, off.OFFICE_TEL as 分局聯絡電話
- from STUDENT.EVACUATION_FACILITY ef
- left join STUDENT.OFFICE off on off.OFFICE_CODE = ef.OFFICE_CODE
- where ef.PEOPLE>1000 ; 
+select distinct OFF.OFFICE_NM as 轄管分局, OFF.OFFICE_TEL as 分局聯絡電話
+ from STUDENT.EVACUATION_FACILITY EF
+ left join STUDENT.OFFICE OFF on OFF.OFFICE_CODE = EF.OFFICE_CODE
+ where EF.PEOPLE>1000 ; 
 
 --4.2
-select distinct off.OFFICE_NM as 轄管分局, off.OFFICE_TEL as 分局聯絡電話, COUNT(*) over (partition by OFFICE_NM) as 容人數量
- from STUDENT.EVACUATION_FACILITY ef 
- left join STUDENT.OFFICE off  on off.OFFICE_CODE = ef.OFFICE_CODE 
- where ef.PEOPLE>1000; 
+select distinct OFF.OFFICE_NM as 轄管分局, OFF.OFFICE_TEL as 分局聯絡電話, COUNT(*) over (partition by OFFICE_NM) as 容人數量
+ from STUDENT.EVACUATION_FACILITY EF 
+ left join STUDENT.OFFICE OFF  on OFF.OFFICE_CODE = EF.OFFICE_CODE 
+ where EF.PEOPLE>1000; 
 
 --4.3
-select distinct off.OFFICE_NM as 轄管分局, off.OFFICE_TEL as 分局聯絡電話, ef.FACILITY_ADD as 避難設施地址, ef.CLASS as 類別, COUNT(*) over (partition by OFFICE_NM) as 容人數量
- from STUDENT.EVACUATION_FACILITY ef 
- left join STUDENT.OFFICE off  on off.OFFICE_CODE = ef.OFFICE_CODE 
- where ef.PEOPLE>1000; 
+select distinct OFF.OFFICE_NM as 轄管分局, OFF.OFFICE_TEL as 分局聯絡電話, EF.FACILITY_ADD as 避難設施地址, EF.CLASS as 類別, COUNT(*) over (partition by OFFICE_NM) as 容人數量
+ from STUDENT.EVACUATION_FACILITY EF 
+ left join STUDENT.OFFICE OFF  on OFF.OFFICE_CODE = EF.OFFICE_CODE 
+ where EF.PEOPLE>1000; 
  
 
 --4.4
-select off.OFFICE_NM as 轄管分局, off.OFFICE_TEL as 分局聯絡電話, ef.FACILITY_ADD as 避難設施地址, ef.CLASS as 類別, cun.COUNTRY_NM as 村里別
- from STUDENT.OFFICE off  
- left join STUDENT.EVACUATION_FACILITY ef on off.OFFICE_CODE = ef.OFFICE_CODE
- left join STUDENT.COUNTRY_INFO cun on ef.COUNTRY_CODE = cun.COUNTRY_CODE
- where ef.FACILITY_ADD LIKE '%中%';
+select OFF.OFFICE_NM as 轄管分局, OFF.OFFICE_TEL as 分局聯絡電話, EF.FACILITY_ADD as 避難設施地址, EF.CLASS as 類別, CUN.COUNTRY_NM as 村里別
+ from STUDENT.OFFICE OFF  
+ left join STUDENT.EVACUATION_FACILITY EF on OFF.OFFICE_CODE = EF.OFFICE_CODE
+ left join STUDENT.COUNTRY_INFO CUN on EF.COUNTRY_CODE = CUN.COUNTRY_CODE
+ where EF.FACILITY_ADD LIKE '%中%';
 
 --4.5
-select  cun.COUNTRY_NM as 村里別, cun.COUNTRY_ADD as 村里辦公室位置, ef.PEOPLE as 容人數量, ef.FACILITY_ADD as 避難設施地址
- from STUDENT.EVACUATION_FACILITY ef
- full join STUDENT.COUNTRY_INFO cun on ef.COUNTRY_CODE = cun.COUNTRY_CODE
- where off.class in ('公寓', '大樓');
+select  CUN.COUNTRY_NM as 村里別, CUN.COUNTRY_ADD as 村里辦公室位置, EF.PEOPLE as 容人數量, EF.FACILITY_ADD as 避難設施地址
+ from STUDENT.EVACUATION_FACILITY EF
+ full join STUDENT.COUNTRY_INFO CUN on EF.COUNTRY_CODE = CUN.COUNTRY_CODE
+ where OFF.class in ('公寓', '大樓');
 
 --5.1
-update STUDENT.EVACUATION_FACILITY set PEOPLE = '5000'  where FACILITY_ADD = '苗栗縣竹南鎮和平街79號';
+update STUDENT.EVACUATION_FACILITY set PEOPLE = 5000  where FACILITY_ADD = '苗栗縣竹南鎮和平街79號';
 
 --5.2
 delete from STUDENT.EVACUATION_FACILITY where PEOPLE < 1000;
