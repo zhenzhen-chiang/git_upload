@@ -74,12 +74,12 @@ alter table STUDENT.COUNTRY_INFO rename column 村里辦公室電話 to COUNTRY_TEL;
 commit;
 alter table STUDENT.EVACUATION_FACILITY add RUNNING_NUMBER NUMBER(13,0);
 commit;
-
+update STUDENT.EVACUATION_FACILITY set RUNNING_NUMBER = 13 where PEOPLE = 3142;
 --4.1
 select distinct off.OFFICE_NM as 轄管分局, off.OFFICE_TEL as 分局聯絡電話
  from STUDENT.EVACUATION_FACILITY ef
  left join STUDENT.OFFICE off on off.OFFICE_CODE = ef.OFFICE_CODE
- where ef.PEOPLE>'1000' ; 
+ where ef.PEOPLE>1000 ; 
 
 --4.2
 select distinct off.OFFICE_NM as 轄管分局, off.OFFICE_TEL as 分局聯絡電話, COUNT(*) over (partition by OFFICE_NM) as 容人數量
