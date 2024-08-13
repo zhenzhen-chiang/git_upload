@@ -9,8 +9,7 @@ import java.util.List;
 public class HRMain {
 
 	public static void main(String[] args) {
-		StringBuilder slaesInfo = new StringBuilder();
-		StringBuilder supervisorInfo = new StringBuilder();
+		StringBuilder payInfo = new StringBuilder();
 
 		List<Employee> employeeList = new ArrayList<Employee>();
 		employeeList.add(new Sales("張志城", "信用卡部", 35000, 6000));
@@ -18,34 +17,31 @@ public class HRMain {
 		employeeList.add(new Supervisor("李中白", "資訊部", 65000));
 		employeeList.add(new Supervisor("林小中", "理財部", 80000));
 		for (Employee employee : employeeList) {
-			employee.printInfo();
+			employee.printInfo();// 第三題
+			payInfo.append(employee.getName()).append(',');
 			if (employee instanceof Sales) {
-				slaesInfo.append(employee.getName()).append(",").append(employee.getSalary()).append("\n");
-
+				payInfo.append(((Sales) employee).getPayment()).append('\n');
 			} else if (employee instanceof Supervisor) {
-				supervisorInfo.append(employee.getName()).append(",").append(employee.getSalary()).append("\n");
+				payInfo.append(((Supervisor) employee).getPayment()).append('\n');
 			}
+		}
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Admin\\Desktop\\output.csv"))) {
 
-			try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\Users\\Admin\\Desktop\\output.csv"))) {
+			bw.write("\ufeff");
 
-				bw.write("\ufeff");
+			String payInfo1 = payInfo.toString();
 
-				String slaesInfo1 = slaesInfo.toString();
-				String supervisorInfo1 = supervisorInfo.toString();
+			bw.write(payInfo1);
 
-				bw.write(slaesInfo1);
-				bw.write(supervisorInfo1);
-				bw.newLine();
 
-				bw.flush();
-
-			}
-
-			catch (IOException e) {
-
-				e.printStackTrace();
-			}
+			bw.flush();
 
 		}
+
+		catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
 	}
 }

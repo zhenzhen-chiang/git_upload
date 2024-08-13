@@ -8,12 +8,12 @@ public class Employee implements IWok {
 	@Override
 	public void printInfo() {
 		System.out.println("薪資單");
-		System.out.printf("姓名:%s 工作部門:%s\n", name, department);
+		System.out.printf("姓名:%s 工作部門:%s\n 月薪:%s\n", name, department, salary);
 	}
 
-	public Employee() {
-
-	}
+//	public Employee() {
+//
+//	}//因為後面的子類別沒有特別呼叫Employee()，所以這邊可以不加
 
 	public Employee(String name, String department, int salary) {
 		this.name = name;

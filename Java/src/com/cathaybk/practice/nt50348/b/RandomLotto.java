@@ -9,13 +9,13 @@ public class RandomLotto {
 
 	public static void main(String[] args) {
 		Random ranlotto = new Random();
-		List<Integer> list = new ArrayList<Integer>();
-		for (int i = 0; i < 7; i++) {
-			int num = ranlotto.nextInt(48) + 1;
+		List<Integer> list = new ArrayList<>();
+		while (list.size() < 6) {
+			int num = ranlotto.nextInt(49) + 1;
 			if (!list.contains(num)) {
 				list.add(num);
-
 			}
+
 		}
 		System.out.print("排序前:");
 		for (int j = 0; j < list.size(); j++) {
