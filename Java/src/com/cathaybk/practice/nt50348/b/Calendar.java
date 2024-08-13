@@ -20,14 +20,14 @@ public class Calendar {
 		System.out.println("---------------------");
 		System.out.println("日  一  二  三 四  五  六");
 		System.out.println("=====================");
-		int dayOfWeekStarIndex = firstDateOfMonth.getDayOfWeek().getValue();
+		int dayOfWeekStarIndex = firstDateOfMonth.getDayOfWeek().getValue();//獲取月份的第一天是星期幾(要從index裡面get出value)
 		if (dayOfWeekStarIndex == 7) {
-			dayOfWeekStarIndex = 0;
+			dayOfWeekStarIndex = 0;//將星期天的位置換到index0
 		}
 		for (int i = 0; i < dayOfWeekStarIndex; i++) {
-			System.out.print("   ");
+			System.out.print("   ");//根據星期幾換算出前面需要幾個空格
 		}
-		LocalDate currentDay = firstDateOfMonth;
+		LocalDate currentDay = firstDateOfMonth;//初始化currnetDay為這個月第一天
 		while (!currentDay.isAfter(lastDateOfMoonth)) {
 			System.out.printf("%2d ", currentDay.getDayOfMonth());
 			if (currentDay.getDayOfWeek().getValue() ==6) {

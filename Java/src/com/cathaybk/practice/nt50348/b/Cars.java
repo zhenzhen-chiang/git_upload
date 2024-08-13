@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Cars {
 
@@ -62,7 +63,7 @@ public class Cars {
 		} catch (Exception e) {
 
 		}
-		Map<String, List<Map<String, String>>> groupedCars = new HashMap<>();
+		Map<String, List<Map<String, String>>> groupedCars = new TreeMap<>();//原hash改tree
 
 		for (Map<String, String> car : carList) {
 			String manufacturer = car.get("Manufacturer");
