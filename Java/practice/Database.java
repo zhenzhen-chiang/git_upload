@@ -70,31 +70,31 @@ public class Database {
 						int minprice = scanner2.nextInt();
 						System.out.println("請輸入售價:");
 						int price = scanner2.nextInt();
-					query(manufacturer,type);
-					}break;
+						query(manufacturer, type);
+					}
+					break;
 				case "insert":
 					insert(conn);
 					break;
 				case "update":
 					boolean success = false;
-					while (!success) {
-						try (Scanner scanner1 = new Scanner(System.in);) {
+					try (Scanner scanner1 = new Scanner(System.in);) {
+						while (!success) {
 							System.out.println("請輸入製造商:");
-							String manufacturer = scanner1.nextLine();
+							String manufacturer = scanner1.next();
 							System.out.println("請輸入類型:");
-							String type = scanner1.nextLine();
+							String type = scanner1.next();
 							System.out.println("請輸入新底價:");
 							int minprice = scanner1.nextInt();
 							System.out.println("請輸入新售價:");
 							int price = scanner1.nextInt();
-							
 
 							Map<String, String> updateMap = new TreeMap<>();
 							updateMap.put("MANUFACTURER", manufacturer);
 							updateMap.put("TYPE", type);
 							updateMap.put("MIN_PRICE", Integer.toString(minprice));
 							updateMap.put("PRICE", Integer.toString(price));// int轉String
-							success=update(updateMap);
+							success = update(updateMap);
 						}
 					}
 					break;
@@ -111,14 +111,14 @@ public class Database {
 		}
 	}
 
-	private static void query(String manufacturer, String type)throws SQLException { 
-		
+	private static void query(String manufacturer, String type) throws SQLException {
+
 		try (Connection conn = DriverManager.getConnection(CONN_URL, USER_NAME, USER_PASSWORD);
 				PreparedStatement pstmt = conn.prepareStatement(SELECT_CARS_SQL1);) {
 			ResultSet rs = null;
-		
+
 			while (rs.next()) {
-	
+
 				System.out.println("製造商: " + rs.getString("MANUFACTURER") + ", 型號: " + rs.getString("TYPE") + ", 底價: "
 						+ rs.getInt("MIN_PRICE") + ", 售價: " + rs.getInt("PRICE"));
 			}
@@ -129,7 +129,6 @@ public class Database {
 
 		}
 	}
-
 
 	private static void insert(Connection conn) throws SQLException {
 		try (Scanner scanner = new Scanner(System.in);) {
@@ -166,37 +165,37 @@ public class Database {
 	}
 
 	private static boolean update(Map<String, String> updateMap) throws SQLException {
-		
-			try (Connection conn = DriverManager.getConnection(CONN_URL, USER_NAME, USER_PASSWORD);
-					PreparedStatement pstmt = conn.prepareStatement(UPDATE_STRING);) {
-				conn.setAutoCommit(false);
-				pstmt.setInt(1, Integer.parseInt(updateMap.get("MIN_PRICE")));// String轉int
-				pstmt.setInt(2, Integer.parseInt(updateMap.get("PRICE")));
-				pstmt.setString(3, updateMap.get("MANUFACTURER").toString());
-				pstmt.setString(4, updateMap.get("TYPE").toString());
-				pstmt.executeUpdate();
-				conn.commit();
-				if (pstmt.executeUpdate() == 0) {
-					return false;
-				} else {
-					
-					System.out.println("更新成功，已更新:" + pstmt.executeUpdate() + "筆");
-					
-					return true;
-				}
-			} catch (SQLException sqle) {
-				System.out.println("更新失敗，原因：" + sqle.getMessage());
+
+		try (Connection conn = DriverManager.getConnection(CONN_URL, USER_NAME, USER_PASSWORD);
+				PreparedStatement pstmt = conn.prepareStatement(UPDATE_STRING);) {
+			conn.setAutoCommit(false);
+			pstmt.setInt(1, Integer.parseInt(updateMap.get("MIN_PRICE")));// String轉int
+			pstmt.setInt(2, Integer.parseInt(updateMap.get("PRICE")));
+			pstmt.setString(3, updateMap.get("MANUFACTURER").toString());
+			pstmt.setString(4, updateMap.get("TYPE").toString());
+			pstmt.executeUpdate();
+			conn.commit();
+			if (pstmt.executeUpdate() == 0) {
+				System.out.println("錯誤，重新輸入");
+				return false;
+			} else {
+
+				System.out.println("更新成功，已更新:" + pstmt.executeUpdate() + "筆");
+
+				return true;
 			}
-			try (Connection conn = DriverManager.getConnection(CONN_URL, USER_NAME, USER_PASSWORD);) {
-				conn.setAutoCommit(false);
-				conn.rollback();
-			} catch (SQLException sqle) {
-				sqle.printStackTrace();
-				System.out.println("rollback失敗，原因：" + sqle.getMessage());
-			}
-			return false;
+		} catch (SQLException sqle) {
+			System.out.println("更新失敗，原因：" + sqle.getMessage());
 		}
-	
+		try (Connection conn = DriverManager.getConnection(CONN_URL, USER_NAME, USER_PASSWORD);) {
+			conn.setAutoCommit(false);
+			conn.rollback();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+			System.out.println("rollback失敗，原因：" + sqle.getMessage());
+		}
+		return false;
+	}
 
 	private static void delete(Connection conn) {
 
