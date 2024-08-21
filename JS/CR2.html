@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CR2</title> <!-- title 內容為瀏覽器上頁籤的文字 -->
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 20px;
+        }
+
+        div {
+            padding: 0px;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            align-items: center;
+        }
+    </style>
+    <script>
+
+        function deleteRow(row) {
+            console.log(row.parentNode);
+            console.log(row.parentNode.parentNode);
+            row.parentNode.parentNode.remove();
+            updateRowInput();
+        }
+        function selectRow(row) {
+            let row1 = row.parentNode.parentNode;
+            document.getElementById('manufacturer').value = row1.cells[2].innerHTML;
+            document.getElementById('type').value = row1.cells[3].innerHTML;
+            document.getElementById('minprice').value = row1.cells[4].innerHTML;
+            document.getElementById('price').value = row1.cells[5].innerHTML;
+            updateRowInput();
+        }
+        function updateRowInput() {
+            const table1 = document.getElementById('table');
+            for (let i = 1; i < table.rows.length; i++) {
+                table1.rows[i].cells[1].innerHTML = i;
+            }
+        }
+        window.onload = function () {
+
+            document.getElementById('add').onclick = function InsertValue() {
+
+                let manufacturerInput = document.getElementById('manufacturer').value;
+                let typeInput = document.getElementById('type').value;
+                let minpriceInput = document.getElementById('minprice').value;
+                let price = document.getElementById('price').value;
+                let table = document.getElementById('table');
+                if (manufacturerInput === '' || typeInput === '') {
+                    alert('製造商和類別不得為空')
+                    return;
+                }
+                console.log(manufacturerInput);
+                let tr1 = document.createElement('tr');
+                tr1.align = 'center'
+                table.appendChild(tr1);
+                let td1 = document.createElement('td');
+                let a1 = `<input type="radio" name="selectRow" onclick="selectRow(this)"/>`;
+
+                td1.innerHTML = a1;
+                tr1.appendChild(td1);
+
+                let td2 = document.createElement('td');
+                let a2 = table.rows.length - 1;
+                td2.innerHTML = a2;
+                tr1.appendChild(td2);
+
+                let td3 = document.createElement('td');
+                let a3 = manufacturerInput;
+                td3.innerHTML = a3;
+                tr1.appendChild(td3);
+
+                let td4 = document.createElement('td');
+                let a4 = typeInput;
+                td4.innerHTML = a4;
+                tr1.appendChild(td4);
+
+                let td5 = document.createElement('td');
+                let a5 = minpriceInput;
+                td5.innerHTML = a5;
+                tr1.appendChild(td5);
+
+                let td6 = document.createElement('td');
+                let a6 = price;
+                td6.innerHTML = a6;
+                tr1.appendChild(td6)
+
+                let td7 = document.createElement('td');
+                // let a7 = `<button onclick="deleteRow(this)">刪除</button>`;
+                let a7 = '<button type="button" onclick="deleteRow(this)">刪除</button>';
+                td7.innerHTML = a7;
+                tr1.appendChild(td7);
+
+            }
+
+
+            // const clearInput = document.getElementById('clear');
+            // clearInput.addEventListener('click', function clearValue() {
+
+            document.getElementById('clear').onclick = function () {
+                document.getElementById('manufacturer').value = '';
+                document.getElementById('type').value = '';
+                document.getElementById('minprice').value = '';
+                document.getElementById('price').value = '';
+                const table1 = document.getElementById('table');
+                table1.innerHTML =
+                    `<tr>
+                    <td></td>
+                    <td>序號</td>
+                    <td>製造商</td>
+                    <td>類別</td>
+                    <td>底價</td>
+                    <td>售價</td>
+                    <td></td>
+                </tr>`;
+                // const table = document.getElementById('table');
+                // while (table.rows.length > 1) {
+                //     deleteRow();
+                // }
+            };
+
+
+            document.getElementById('fix').onclick = function () {
+                let radio = document.getElementsByName('selectRow');
+                let manufacturerInput = document.getElementById('manufacturer').value;
+                let typeInput = document.getElementById('type').value;
+
+                for (let radioCont of radio) {
+                    if (radioCont.checked === true) {
+                        console.log(radioCont);
+                        let radioCont1 = radioCont.parentNode.parentNode;
+                        console.log(radioCont1);
+                        let manufacturerInput = document.getElementById('manufacturer').value;
+                        let typeInput = document.getElementById('type').value;
+                        let minpriceInput = document.getElementById('minprice').value;
+                        let price = document.getElementById('price').value;
+                        if (manufacturerInput !== '' || typeInput !== '') {
+                            radioCont1.cells[2].innerText = manufacturerInput;
+                            radioCont1.cells[3].innerText = typeInput;
+                            radioCont1.cells[4].innerText = minpriceInput;
+                            radioCont1.cells[5].innerText = price;
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+    </script>
+
+<body><!-- body 內容置入網頁內容本體（給網頁瀏覽者看的） -->
+    <span>【操作 DOM 物件 - table】</span><br><br>
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>製造商</td>
+                <td><input id="manufacturer" type="text" /></td>
+                <td>類別</td>
+                <td><input id="type" type="text" /></td>
+            </tr>
+            <tr>
+                <td>底價</td>
+                <td><input id="minprice" type="text" /></td>
+                <td>售價</td>
+                <td><input id="price" type="text" /></td>
+            </tr>
+            <tr>
+
+                <td colspan="6">
+                    <div><button id="add">新增</button>　<button id="fix">修改</button>　<button id="clear">清空</button></div>
+                </td>
+            </tr>
+        </tbody>
+    </table><br>
+    <table border="1" id="table">
+        <tbody>
+            <tr>
+                <td></td>
+                <td>序號</td>
+                <td>製造商</td>
+                <td>類別</td>
+                <td>底價</td>
+                <td>售價</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</head>
+
+</html>
