@@ -18,36 +18,46 @@
         window.onload = function () {
             const map = new HashMap();
             const rs = document.getElementById('result');
-            const put = document.getElementById('but_1');
-            put.addEventListener('click', function putValue() {
+            const putButton = document.getElementById('btn_1');
+            putButton.addEventListener('click', function putValue() {
                 const key = document.getElementById('key').value;
                 const value = document.getElementById('value').value;
-                if (key === '') {
-                    alert('輸入值不為空')
+                if (!key.trim()) {//可以直接寫key就好，!反向判斷 //false family
+
+                    alert('輸入值不為空')//trim判斷值如果空白都清掉
                     return;
                 }
-                if (map.contains(key) === true) {
+                if(!value.trim()){
+                    alert('輸入值不為空');
+                    return;
+                }
+                if (map.contains(key)) {
                     alert('重複輸入')
                     return;
                 }
                 map.put(key, value);
-                displayResult();
+                let resultTxt=`<br>　${key}:${value}<br>`
+                rs.innerHTML += resultTxt;
+
+                // displayResult();
             });
 
-            function displayResult() {
-                const key = map.keys();
-                let resultTxt = '';
-                for (const index in key) {
-                    const key1 = key[index];
-                    resultTxt = `<br>　${key1}:${map.get(key1)}<br>`
-                    rs.innerHTML += resultTxt;
-                }
-            }
+            // function displayResult() {//另一種複雜的解法
+            //     const key = map.keys();
+            //     let resultTxt = '';
+            //     for (const index in key) {
+            //         const key1 = key[index];
+            //         resultTxt = `<br>　${key1}:${map.get(key1)}<br>`
+            //     }
+            //     rs.innerHTML += resultTxt;//要把rs先清掉
+            // }
 
-            const clear = document.getElementById('but_2');
+            const clear = document.getElementById('btn_2');
             clear.addEventListener('click', function clearValue() {
                 map.clear();
-                rs.innerHTML = '【RESULT】';
+                document.getElementById('key').value = '';
+                document.getElementById('value').value = '';
+                rs.innerHTML = '【RESULT】';//要把上面一起清掉
             });
         }
     </script>
@@ -60,8 +70,8 @@
     <span class="text">VALUE </span>
     <input type="text" id="value" /><br>
     <hr width="300px" style="margin-left: initial" ;>
-    <button style="width: 70px" id="but_1">PUT</button>
-    <button style="width:70px" id="but_2">CLEAR</button>
+    <button style="width: 70px" id="btn_1">PUT</button>
+    <button style="width:70px" id="btn_2">CLEAR</button>
     <hr width="300px" style="margin-left: initial" ;>
     <span id="result">【RESULT】</span>
 

@@ -33,7 +33,7 @@
             updateRowInput();
         }
         function selectRow(row) {
-            let row1 = row.parentNode.parentNode;
+            const row1 = row.parentNode.parentNode;
             document.getElementById('manufacturer').value = row1.cells[2].innerHTML;
             document.getElementById('type').value = row1.cells[3].innerHTML;
             document.getElementById('minprice').value = row1.cells[4].innerHTML;
@@ -49,48 +49,47 @@
         window.onload = function () {
 
             document.getElementById('add').onclick = function InsertValue() {
-
-                let manufacturerInput = document.getElementById('manufacturer').value;
-                let typeInput = document.getElementById('type').value;
-                let minpriceInput = document.getElementById('minprice').value;
-                let price = document.getElementById('price').value;
-                let table = document.getElementById('table');
-                if (manufacturerInput === '' || typeInput === '') {
+                const manufacturerInput = document.getElementById('manufacturer').value;
+                const typeInput = document.getElementById('type').value;
+                const minpriceInput = document.getElementById('minprice').value;
+                const price = document.getElementById('price').value;
+                const table = document.getElementById('table');
+                if (!manufacturerInput.trim() || !typeInput.trim()) {//false family
                     alert('製造商和類別不得為空')
                     return;
                 }
-                let tr1 = document.createElement('tr');
+
+                const tr1 = document.createElement('tr');
                 tr1.align = 'center'
                 table.appendChild(tr1);
 
-                let td1 = document.createElement('td');
+                const td1 = document.createElement('td');
                 td1.innerHTML = `<input type="radio" name="selectRow" onclick="selectRow(this)"/>`;;
                 tr1.appendChild(td1);
 
-                let td2 = document.createElement('td');
+                const td2 = document.createElement('td');
                 td2.innerHTML = table.rows.length - 1;
                 tr1.appendChild(td2);
 
-                let td3 = document.createElement('td');
-                td3.innerHTML =manufacturerInput;
+                const td3 = document.createElement('td');
+                td3.innerHTML = manufacturerInput;
                 tr1.appendChild(td3);
 
-                let td4 = document.createElement('td');
+                const td4 = document.createElement('td');
                 td4.innerHTML = typeInput;
                 tr1.appendChild(td4);
 
-                let td5 = document.createElement('td');
+                const td5 = document.createElement('td');
                 td5.innerHTML = minpriceInput;
                 tr1.appendChild(td5);
 
-                let td6 = document.createElement('td');
+                const td6 = document.createElement('td');
                 td6.innerHTML = price;
                 tr1.appendChild(td6)
 
-                let td7 = document.createElement('td');
+                const td7 = document.createElement('td');
                 td7.innerHTML = '<button type="button" onclick="deleteRow(this)">刪除</button>';
                 tr1.appendChild(td7);
-
             }
 
             document.getElementById('clear').onclick = function () {
@@ -109,34 +108,30 @@
                     <td>售價</td>
                     <td></td>
                 </tr>`;
-
             };
 
             document.getElementById('fix').onclick = function () {
-                let radio = document.getElementsByName('selectRow');
-                let manufacturerInput = document.getElementById('manufacturer').value;
-                let typeInput = document.getElementById('type').value;
-
+                const radio = document.getElementsByName('selectRow');
                 for (let radioCont of radio) {
-                    if (radioCont.checked === true) {
-                        let radioCont1 = radioCont.parentNode.parentNode;
-                        let manufacturerInput = document.getElementById('manufacturer').value;
-                        let typeInput = document.getElementById('type').value;
-                        let minpriceInput = document.getElementById('minprice').value;
-                        let price = document.getElementById('price').value;
-                        if (manufacturerInput !== '' || typeInput !== '') {
+                    if (radioCont.checked) {//精簡//已經是在判布林值不用特別寫true
+                        const radioCont1 = radioCont.parentNode.parentNode;
+                        const manufacturerInput = document.getElementById('manufacturer').value;
+                        const typeInput = document.getElementById('type').value;
+                        const minpriceInput = document.getElementById('minprice').value;
+                        const price = document.getElementById('price').value;
+
+                        if (manufacturerInput.trim() || typeInput.trim()) {
                             radioCont1.cells[2].innerText = manufacturerInput;
                             radioCont1.cells[3].innerText = typeInput;
                             radioCont1.cells[4].innerText = minpriceInput;
                             radioCont1.cells[5].innerText = price;
+                            return;
                         }
 
-                    }
-
+                    } alert('請點選要修改的序號');
                 }
             }
         }
-
     </script>
 
 <body><!-- body 內容置入網頁內容本體（給網頁瀏覽者看的） -->

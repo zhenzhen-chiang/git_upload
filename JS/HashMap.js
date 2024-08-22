@@ -27,6 +27,7 @@ var HashMap = function () {
 
         },
         clear: function () {
+            obj = {};//可以直接指定為一個空obj
             for (const key in obj) {
 
                 delete obj[key];
