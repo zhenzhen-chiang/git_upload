@@ -5,18 +5,18 @@ var HashMap = function () {
         put: function (key, value) {
                 obj[key] = value;//把傳進的k、v放進[]//map.key===map['key]
         },
-        keys: function (key) {
-            const a = [];
+        keys: function () {
+            const array = [];
             for (const key in obj) {
-                a.push(key);
+                array.push(key);
             }
-            return a;
+            return array;
             // Object.keys(map)
 
         },
-        contains: function (key) {
+        contains: function (keyInput) {
             for (const key in obj) {
-                if (key === key) {//key跟傳入的k做比較
+                if (key === keyInput) {//key跟傳入的k做比較
                     return true;
                 }
             }
