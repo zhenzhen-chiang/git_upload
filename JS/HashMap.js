@@ -1,15 +1,16 @@
 
 var HashMap = function () {
-    const obj = {};//hashmap實際儲存的格式
+    let obj = {};//hashmap實際儲存的格式//改成let
     return {
         put: function (key, value) {
-                obj[key] = value;//把傳進的k、v放進[]//map.key===map['key]
+            obj[key] = value;//把傳進的k、v放進[]//map.key===map['key]
         },
         keys: function () {
             const array = [];
             for (const key in obj) {
                 array.push(key);
             }
+
             return array;
             // Object.keys(map)
 
@@ -28,10 +29,10 @@ var HashMap = function () {
         },
         clear: function () {
             obj = {};//可以直接指定為一個空obj
-            for (const key in obj) {
+            // for (const key in obj) {
 
-                delete obj[key];
-            }
+            //     delete obj[key];
+            // }
 
         }
     };

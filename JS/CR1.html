@@ -27,7 +27,7 @@
                     alert('輸入值不為空')//trim判斷值如果空白都清掉
                     return;
                 }
-                if(!value.trim()){
+                if (!value.trim()) {
                     alert('輸入值不為空');
                     return;
                 }
@@ -36,7 +36,7 @@
                     return;
                 }
                 map.put(key, value);
-                let resultTxt=`<br>　${key}:${value}<br>`
+                let resultTxt = `<br>　${key}:${value}<br>`
                 rs.innerHTML += resultTxt;
 
                 // displayResult();

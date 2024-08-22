@@ -54,7 +54,7 @@
                 const minpriceInput = document.getElementById('minprice').value;
                 const price = document.getElementById('price').value;
                 const table = document.getElementById('table');
-                if (!manufacturerInput.trim() || !typeInput.trim()) {//false family
+                if (!manufacturerInput.trim() && !typeInput.trim()) {//false family
                     alert('製造商和類別不得為空')
                     return;
                 }
@@ -120,16 +120,17 @@
                         const minpriceInput = document.getElementById('minprice').value;
                         const price = document.getElementById('price').value;
 
-                        if (manufacturerInput.trim() || typeInput.trim()) {
+                        if (manufacturerInput.trim() && typeInput.trim()) {
                             radioCont1.cells[2].innerText = manufacturerInput;
                             radioCont1.cells[3].innerText = typeInput;
                             radioCont1.cells[4].innerText = minpriceInput;
                             radioCont1.cells[5].innerText = price;
                             return;
                         }
-
-                    } alert('請點選要修改的序號');
-                }
+                        alert('製造商和類別不得為空');
+                        return;
+                    }
+                } alert('請點選要修改的序號');
             }
         }
     </script>
