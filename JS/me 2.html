@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<form method="get">
+
+    <head>
+        <meta charset=utf-8>
+        <title>ME</title>
+        <link rel="stylesheet" href="me.css">
+        <script type="text/javascript">
+            window.onload = function () {
+                document.getElementById('otherLanguage').onclick = function () {
+
+                    let otherLanguageInput = document.getElementById('otherLanguageInput')
+
+                    if (document.getElementById('otherLanguage').checked === true) {
+                        otherLanguageInput.removeAttribute('disabled');
+                    } else {
+                        otherLanguageInput.setAttribute('disabled', true);
+                        otherLanguageInput.value = '';
+                    }
+                }
+                document.getElementById('btn_1').onclick = function () {
+                    // console.log((document.getElementById('engName')));
+                    let engName = document.getElementById('engName');
+                    let wheres = document.getElementById('where');
+                    let whereInpt = '哪裡人:' + where.value;
+
+                    let jobExp = document.getElementsByName('work');
+                    let jobExpInp = '';
+                    console.log(jobExp);
+                    for (let key of jobExp) {
+                        if (key.checked) {
+                            jobExpInp = '有沒有正式工作經驗:' + key.value;
+                        }
+                    }
+
+                    let language = document.getElementsByName('language');
+                    let languageChecked = '';
+
+                    for (let i = 0; i < language.length - 1; i++) {
+                        if (language[i].checked) {
+                            console.log(language[i].checked);
+                            console.log('語言:' + language[i].value);
+                            languageChecked += language[i].value;
+
+                        }
+                    }
+                    console.log(languageChecked);
+                    let languageInpu = document.getElementById('otherLanguageInput');
+                    let languageRs = '';
+                    if (otherLanguageInput.value !== '') {
+                        languageRs = languageInpu.value;
+                        console.log(languageRs);
+                    }
+
+                    if (engName.value === '') {
+                        window.alert('英文名字為必填');
+                        return;
+                    } else
+                        window.confirm('英文名:' + engName.value + '\n ' + jobExpInp + '\n' + '語言:' + languageChecked + languageRs);
+                    // showtxt.innerHTML = 'Hi~'+ engName.value;
+
+                }
+            }
+
+
+        </script>
+
+
+    <body>
+
+        <img src="rabbit.jpg">
+        <br>
+        <div>
+            英文名：
+            <input type="text" value="joyce" name="NAME" id="engName" maxlength="5" />
+            <br>
+            哪裡人：
+            <select id="where">
+                <option value="請選擇">請選擇</option>
+                <option value="台北市">台北市</option>
+                <option value="新北市">新北市</option>
+                <option value="桃園市">桃園市</option>
+            </select>
+            <br>
+            正式工作經驗：
+            <label><input type="radio" name="work" value="有" checked />有</label>
+            <label><input type="radio" name="work" value="沒有" />沒有</label>
+            <br>
+            語言：
+            <input type="checkbox" checked name="language" value="國語" />國語
+            <input type="checkbox" name="language" value="台語" />台語
+            <input type="checkbox" checked name="language" value="其他" id="otherLanguage" />其他
+            <input type="text" id="otherLanguageInput" disabled />
+            <br>
+        </div>
+        <table border="1">
+            <tr>
+                <td colspan="2">如果可以出國的話，想去：</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><input type="text" value="日本" style="display: inline-block;margin-right: 15px;" id="jp" /></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><input type="text" value="美國" style="display: inline-block;margin-right: 15px;" /></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><input type="text" value="德國" style="display: inline-block;margin-right: 15px;" /></td>
+
+            </tr>
+        </table>
+        <button type="button" id="btn_1">Say Hi~</button>
+
+    </body>
+    </head>
+</form>
+
+</html>

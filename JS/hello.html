@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset=utf-8>
+
+    <script type="text/javascript">
+        var x;
+        var y = x;
+        console.log(y);
+
+        var x = null;
+        var y = 'test';
+        var z = 99;
+        console.log(x || y || z)
+        console.log(x && y && z);
+
+        var value = '0';
+        if (value) {
+            console.log('true');
+        } else {
+            console.log('false');
+        }
+        for (var i = 0; i < 9; ++i) {
+            console.log(i + 1)
+        }
+        for (var i = 0; i < 9; i++) {
+            console.log(i)
+        }
+
+        var Num = 0;
+        while (Num < 9) {
+            Num = Num + 1;
+            console.log(Num);
+        }
+        var key1 = 'test';
+        var obj = { 'key': key1, key1: 'key' };
+        for (var tempkey in obj) {
+            console.log(tempkey + ':' + obj[tempkey]);
+        }
+        var key = 'test';
+        var obj = { 'key': key, key: 'key' };
+        for (var tempkey in obj) {
+            console.log(tempkey + ':' + obj[tempkey]);
+        }
+        var array1 = [];
+        var array2 = array1;
+        array2.push('123');
+        console.log(array1.length);
+
+        var array1 = [];
+        var array2 = array1;
+        array2.push('123');
+        console.log(array1);
+
+        var jsonObj = {
+            key1: 'key1',
+            key2: 2,
+            key3: true,
+            key4: {
+
+                key41: 'key41',
+                key42: 3,
+            }
+        }
+        console.log(jsonObj.key1);
+        console.log(jsonObj['key2']);
+        console.log(jsonObj.key4);
+
+
+
+        var obj = {
+            name: '幸運兒',
+            age: 20,
+            lottory: [1, 5, 29, 41, 37, 15],
+        }
+        console.log(obj.name);
+        console.log(obj.age);
+        console.log(obj.lottory);
+
+        var origin = { '王大明': 89, '張小美': 97, '李鐵柱': 18, '謝小天': 22 };
+        for (var key in origin) {
+            // console.log(origin[key], '加分前');
+            var num1 = origin[key] + 5;
+            if (num1 >= 100) {
+                num1 = 100;
+            }
+            // console.log(num1, '加分後');
+            // var after = {'王大明':num1, '張小美':num1,'李鐵柱':num1,'謝小天':num1} ;   
+
+            console.log(key + ':' + num1);
+        }
+
+        var func = function (str) {
+            console.log('func = ' + str);
+        };
+        function func(str, str2) {
+            console.log('func override = ' + str);
+
+        };
+        func('1');
+
+        var arr = [6, 5, '草莓大福', false, undefined, '抹茶拿鐵', [], function () { }, {}];
+        console.log(typeof 6);
+        console.log(typeof 5);
+        console.log(typeof '草莓大福');
+        console.log(typeof false);
+        console.log(typeof undefined);
+        console.log(typeof '抹茶拿鐵');
+        console.log(typeof []);
+        console.log(typeof function () { });
+        console.log(typeof {});
+        console.log([] instanceof Object);
+        console.log({} instanceof Object);
+        console.log([] instanceof Array);
+        console.log({} instanceof Array);
+
+        var a = 10;
+        if (a < 100) {
+            var b = 20;
+        }
+        console.log(b);
+
+        var func = function () {
+            var str1 = 'funcString';
+            var func2 = function () {
+                console.log('str1 = ' + str1);
+            };
+            func2();
+        };
+        func();
+
+        str = 'String';
+        var func = function(){
+            var str = 'funcString';
+            console.log('func get window.str = '+window.str);
+            console.log('func get str =' +str);
+        };
+        console.log('before = '+str);
+        func();
+        console.log('after =' +str);
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+</html>

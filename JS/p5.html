@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<script>
+
+    window.onload = function () {
+
+        const backJson = '{\"datas\":[{\"districts\":[{\"zip\":\"100\",\"name\":\"中正區\"},{\"zip\":\"103\",\"name\":\"大同區\"},{\"zip\":\"104\",\"name\":\"中山區\"},{\"zip\":\"105\",\"name\":\"松山區\"},{\"zip\":\"106\",\"name\":\"大安區\"},{\"zip\":\"108\",\"name\":\"萬華區\"},{\"zip\":\"110\",\"name\":\"信義區\"},{\"zip\":\"111\",\"name\":\"士林區\"},{\"zip\":\"112\",\"name\":\"北投區\"},{\"zip\":\"114\",\"name\":\"內湖區\"},{\"zip\":\"115\",\"name\":\"南港區\"},{\"zip\":\"116\",\"name\":\"文山區\"}],\"name\":\"臺北市\"},{\"districts\":[{\"zip\":\"200\",\"name\":\"仁愛區\"},{\"zip\":\"201\",\"name\":\"信義區\"},{\"zip\":\"202\",\"name\":\"中正區\"},{\"zip\":\"203\",\"name\":\"中山區\"},{\"zip\":\"204\",\"name\":\"安樂區\"},{\"zip\":\"205\",\"name\":\"暖暖區\"},{\"zip\":\"206\",\"name\":\"七堵區\"}],\"name\":\"基隆市\"}]}';
+        const jsonObj = JSON.parse(backJson);//JSON將字串換成物件
+        const createOption = function (show, value) {//建下拉式選單中的選項
+            const opt = document.createElement('option');
+            opt.value = value;
+            opt.innerHTML = show;
+            return opt;
+        }
+
+        const citySelect = document.getElementById('city');
+        const cleanSelect = function (selectDom) {
+            selectDom.innerHTML = '';
+            selectDom.appendChild(createOption('請選擇', ''));
+        }
+
+        const allCity = jsonObj.datas; //取得物件的數據
+        console.log(jsonObj);
+
+
+        for (const cityIfo of allCity) {//利用for of把arr的結果一項一項取出來
+
+            const cityName = cityIfo.name;
+            console.log(cityName);
+            console.log(cityIfo);
+            citySelect.appendChild(createOption(cityName, cityName));
+
+            citySelect.onchange = function () {
+                let distSelect = document.getElementById('dist');
+              
+
+
+                cleanSelect(distSelect);
+                let city = citySelect.value;
+                console.log(city);
+
+                if (city) {
+                    distSelect.disabled = false;
+                    for (const distInfo of dists) {
+                        console.log(distInfo);
+                        if (city === distInfo.name) {
+                            let dists = cityIfo.districts;
+                            for (let dist of dists) {
+
+                            }
+                            distSelect.appendChild(createOption(distInfo.name, distInfo.zip));
+
+                        }
+                        break;
+                    }
+
+                } else {
+                    distSelect.disabled = true;
+
+
+
+                }
+            }
+
+        }
+
+
+    }
+
+
+
+</script>
+
+<body>
+    縣市：<select id="city">
+        <option value="">請選擇</option>
+    </select><br>
+    行政區：<select id="dist" disabled>
+        <option value="">請選擇</option>
+    </select><br>
+    <button type="button" id="send">送出</button>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+img{
+width:200 ;
+height:350 ;
+}
+
+div{
+    width:400px ;
+
+    background-color: yellow;
+}
+
+#jp{
+    background-color: lightpink;
+}
+input{
+    text-align: center;
+}
